@@ -1,0 +1,19 @@
+body,ul,p,h1,h2,h3,h4,h5,h6,td,th,dl,dd,dt,input,ol, div { margin: 0px; padding: 0px; }
+body { font-size: 12px; font:12px/1.5 "微软雅黑"; color: #333; background-color: #fff; }
+ul,li {list-style: none; }
+a { text-decoration: none; color: inherit; cursor: pointer;}
+img { border-width: 0px; }
+table { border-collapse: collapse; }
+em, i { font-style:normal; }
+textarea { resize:none;}
+input{ outline: none;}
+.clearfix {
+	zoom:1;
+}
+.clearfix:after {
+	display: block;
+	clear: both;
+	content: "";
+	visibility: hidden;
+	height: 0;
+}

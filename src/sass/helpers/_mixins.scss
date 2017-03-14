@@ -1,0 +1,23 @@
+@mixin bgi {
+    background-image: url("../images/toolbar.png");
+    background-repeat: no-repeat;
+}
+@mixin bp($bpi, $bph) {
+    background-position: 0 #{$bpi}px;
+    &:hover {
+        background-position: 0 #{$bph}px;
+    }
+}
+@mixin toolbar-layer($height, $bpy) {
+    height: #{$height}px;
+    background-position: 0 #{$bpy}px;
+}
+@mixin toolbar-layer-ot($opacity, $scale) {
+    opacity: $opacity;
+    // 兼容IE
+    filter: alpha(opacity=$opacity * 100);
+    transform: scale($scale);
+}
+@mixin cc($cc) {
+    background-color: $cc;
+}

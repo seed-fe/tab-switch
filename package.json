@@ -1,0 +1,34 @@
+{
+  "name": "learn",
+  "version": "1.0.0",
+  "description": "learning sass with gulp",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sass",
+    "gulp",
+    "browsersync"
+  ],
+  "author": "Bill",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "^1.4.0",
+    "gulp-sass": "^3.0.0",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^2.2.2",
+    "gulp-util": "^3.0.7",
+    "gulp-watch-path": "^0.1.0",
+    "stream-combiner2": "^1.1.1",
+    "node-sass": "^4.1.1",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-uglify": "^1.1.0",
+    "gulp-rev-collector": "^1.0.5",
+    "gulp-rev": "^7.1.2",
+    "gulp-htmlmin": "^3.0.0"
+  }
+}
