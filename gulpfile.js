@@ -51,7 +51,7 @@ gulp.task('watchsass', function() {
 gulp.task('reload',['watchsass'], function() {
     browserSync.init({
         // 设置监听的文件，以baseDir设置的根目录为起点，单个文件就用字符串，多个文件就用数组
-        files: ["src/*.html", "src/css/*.css", "src/js/*.js"],
+        files: ["src/*.html", "src/css/*.css", "src/script/*.js"],
         // 启动静态服务器，默认监听3000端口，设置文件监听路径为src/
         server: {
             baseDir: "./src"
