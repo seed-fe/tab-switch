@@ -12,7 +12,31 @@ window.onload = function () {
 	}
 	// 遍历tabs
 	for (var i = 0; i < tabs.length; i++) {
-		// 给tab增加一个自定义属性用来保存序号
-		tabs[i].id = i;
+		// 给tab增加一个自定义属性number用来保存索引
+		tabs[i].number = i;
+		// 鼠标滑过切换
+		// tabs[i].onmouseover = function (argument) {
+		// 	/* body... */
+		// 	// 清除所有li上的class
+		// 	for (var j = 0; j < tabs.length; j++) {
+		// 		tabs[j].className = '';
+		// 		contents[j].style.display = 'none';
+		// 	}
+		// 	// 设置当前为高亮显示
+		// 	this.className = 'selected';
+		// 	contents[this.number].style.display = 'block';
+		// }
+		// 鼠标点击切换
+		tabs[i].onclick = function (argument) {
+			/* body... */
+			// 清除所有li上的class
+			for (var j = 0; j < tabs.length; j++) {
+				tabs[j].className = '';
+				contents[j].className = 'mod';
+			}
+			// 设置当前为高亮显示
+			this.className = 'selected';
+			contents[this.number].className = 'mod mod-current';
+		}
 	}
 }
