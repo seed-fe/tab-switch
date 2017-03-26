@@ -40,6 +40,7 @@ window.onload = function () {
 	// 		contents[this.number].className = 'mod mod-current';
 	// 	}
 	// }
+	/*用立即执行匿名函数和闭包的方式存储索引*/
 	for (var i = 0; i < tabs.length; i++) {
 		(function (e) {
 			tabs[e].onclick = function() {
