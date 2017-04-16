@@ -104,7 +104,8 @@ $(document).ready(function() {
 	}
 	for (var i = 0; i < tabs.length; i++) {
 		(function (e) {
-			tabs[e].onmouseenter = function() {
+			// tabs[e].onmouseenter = function() {
+			tabs[e].onclick = function() {
 				// 清除自动切换的定时器
 				clearInterval(timer);
 				// 判断当前tab对应的内容是否正在显示，如果正在显示就不执行切换函数，否则就执行切换函数
