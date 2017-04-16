@@ -1,7 +1,7 @@
-function $ (id) {
-	// body... 
-	return typeof id === 'string' ? document.getElementById(id) : id;
-}
+// function $ (id) {
+// 	// body... 
+// 	return typeof id === 'string' ? document.getElementById(id) : id;
+// }
 // window.onload = function () {
 // 	/* body... */
 // 	// tab索引和定时器
@@ -90,43 +90,59 @@ function $ (id) {
 // 	}*/
 // }
 /*自动切换*/
-window.onload = tab;
-function tab () {
+// window.onload = tab;
+$(document).ready(function() {
+	// tab();
 	// body...
 	var index = 0, //当前显示的tab的索引，初值是0，表示一开始显示第一个
 		timer = null;
-	var tabDiv = $('notice');
-	var tabs = $('notice-title').getElementsByTagName('li'),
-		contents = $('notice-content').getElementsByTagName('div');
+	var tabDiv = $('#notice');
+	var tabs = $('#notice-title li'),
+		contents = $('#notice-content div');
 	if (tabs.length != contents.length) {
 		return;
 	}
 	for (var i = 0; i < tabs.length; i++) {
 		(function (e) {
-			tabs[e].onmouseover = function() {
+			tabs[e].onmouseenter = function() {
 				// 清除自动切换的定时器
 				clearInterval(timer);
-				// 清除所有li上的class
-				tabSwitch(e);
+				// 判断当前tab对应的内容是否正在显示，如果正在显示就不执行切换函数，否则就执行切换函数
+				if (contents[e].style.display === 'block') {
+					return;
+				} else {
+					tabSwitch(e);
+				}
 			}
 		})(i);
 	}
 	// 鼠标移入整个tab模块时清除定时器，解除自动切换
-	tabDiv.onmouseover = function() {
+	tabDiv.on('mouseover', function(event) {
+		event.preventDefault();
+		/* Act on the event */
 		clearInterval(timer);
-	}
-	// 鼠标移出整个tab模块时恢复自动切换
-	tabDiv.onmouseout = function() {
+		timer = null;
+	});
+	tabDiv.on('mouseout', function(event) {
+		event.preventDefault();
+		/* Act on the event */
 		timer = setInterval(autoPlay, 2000);
-	}
+	});
+	// tabDiv.onmouseover = function() {
+	// 	clearInterval(timer);
+	// }
+	// 鼠标移出整个tab模块时恢复自动切换
+	// tabDiv.onmouseout = function() {
+		
+	// }
 	if (timer) {
 		clearInterval(timer);
 		timer = null;
 	}
 	// 添加间歇调用，改变当前高亮的索引
 	timer = setInterval(autoPlay, 2000);
-	// 索引自增函数封装
-	function autoPlay(argument) {
+	// 自动切换索引自增函数封装
+	function autoPlay() {
 		// body...
 		index++;
 		// 索引达到最大时要重新归零
@@ -136,14 +152,41 @@ function tab () {
 		tabSwitch(index);
 	}
 	// tab切换函数封装
+	// function tabSwitch(curIndex) {
+	// 	for (var j = 0; j < tabs.length; j++) {
+	// 		tabs[j].className = '';
+	// 		// 通过className来操作内容的显示切换，避免内联样式代码
+	// 		contents[j].className = 'mod';
+	// 	}
+	// 	tabs[curIndex].className = 'selected';
+	// 	contents[curIndex].className = 'mod mod-current';
+	// 	index = curIndex;
+	// }
+	// fade切换
 	function tabSwitch(curIndex) {
 		for (var j = 0; j < tabs.length; j++) {
-			tabs[j].className = '';
-			// 通过className来操作内容的显示切换，避免内联样式代码
-			contents[j].className = 'mod';
+			contents[j].style.display = 'none';
 		}
-		tabs[curIndex].className = 'selected';
-		contents[curIndex].className = 'mod mod-current';
+		// 内容切换完成后才切换tab选项
+		/*$(contents[curIndex]).fadeIn('500', function() {
+			for (var k = 0; k<tabs.length; k++) {
+				tabs[k].className = '';
+			}
+			tabs[curIndex].className = 'selected';
+		});*/
+		// 内容切换开始就切换tab选项
+		$(contents[curIndex]).fadeIn({
+			duration: '100', 
+			start: function() {
+				for (var k = 0; k<tabs.length; k++) {
+					tabs[k].className = '';
+				}
+				tabs[curIndex].className = 'selected';
+			}
+		});
 		index = curIndex;
 	}
-}		
+});
+// function tab () {
+	
+// }		
