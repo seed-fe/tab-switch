@@ -212,4 +212,7 @@ $(document).ready(function() {
 // }		
 
 
-/**/
+/*用面向对象的方式重写，然后封装成jquery插件*/
+function Tab (tabs, contents, opts) {
+	// body...
+}
