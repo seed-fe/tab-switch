@@ -1,6 +1,10 @@
 /* 切换内容部分 */
 .notice-content {
+    position: relative;
 	.mod {
+        position: absolute;
+        top: 0;
+        right: 0;
 		display: none;
 		margin: 10px 10px 10px 19px;
 	}

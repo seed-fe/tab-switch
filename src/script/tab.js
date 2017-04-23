@@ -95,7 +95,8 @@ $(document).ready(function() {
 	// tab();
 	// body...
 	var index = 0, //当前显示的tab的索引，初值是0，表示一开始显示第一个
-		timer = null;
+		timer = null,
+		timer1 = null;
 	var tabDiv = $('#notice');
 	var tabs = $('#notice-title li'),
 		contents = $('#notice-content div');
@@ -104,16 +105,24 @@ $(document).ready(function() {
 	}
 	for (var i = 0; i < tabs.length; i++) {
 		(function (e) {
+			tabs[e].onmouseover = function() { // mouseover 触发时应该延迟切换，这样比较
 			// tabs[e].onmouseenter = function() {
-			tabs[e].onclick = function() {
-				// 清除自动切换的定时器
-				clearInterval(timer);
-				// 判断当前tab对应的内容是否正在显示，如果正在显示就不执行切换函数，否则就执行切换函数
-				if (contents[e].style.display === 'block') {
-					return;
-				} else {
-					tabSwitch(e);
+			// tabs[e].onclick = function() {
+				if (timer1) {
+					clearTimeout(timer1);
+					console.log(timer1);
+					timer1 = null;
+					console.log(timer1);
 				}
+				// 判断当前tab对应的内容是否正在显示，如果正在显示就不执行切换函数，否则就执行切换函数
+				// if (contents[e].style.display === 'block') {
+				// 	return;
+				// } else {
+					timer1 = setTimeout(function() {
+						tabSwitch(e);
+					}, 500);
+					
+				// }
 			}
 		})(i);
 	}
@@ -164,30 +173,43 @@ $(document).ready(function() {
 	// 	index = curIndex;
 	// }
 	// fade切换
+	// function tabSwitch(curIndex) {
+	// 	for (var j = 0; j < tabs.length; j++) {
+	// 		contents[j].style.display = 'none';
+	// 	}
+	// 	// 内容切换完成后才切换tab选项
+	// 	$(contents[curIndex]).fadeIn('500', function() {
+	// 		for (var k = 0; k<tabs.length; k++) {
+	// 			tabs[k].className = '';
+	// 		}
+	// 		tabs[curIndex].className = 'selected';
+	// 	});
+	// 	// 内容切换开始就切换tab选项
+	// 	$(contents[curIndex]).fadeIn({
+	// 		duration: '100', 
+	// 		start: function() {
+	// 			for (var k = 0; k<tabs.length; k++) {
+	// 				tabs[k].className = '';
+	// 			}
+	// 			tabs[curIndex].className = 'selected';
+	// 		}
+	// 	});
+	// 	index = curIndex;
+	// }
+	// opacity切换
 	function tabSwitch(curIndex) {
-		for (var j = 0; j < tabs.length; j++) {
-			contents[j].style.display = 'none';
+		// body...
+		for (var k = 0; k<tabs.length; k++) {
+			tabs[k].className = '';
 		}
-		// 内容切换完成后才切换tab选项
-		/*$(contents[curIndex]).fadeIn('500', function() {
-			for (var k = 0; k<tabs.length; k++) {
-				tabs[k].className = '';
-			}
-			tabs[curIndex].className = 'selected';
-		});*/
-		// 内容切换开始就切换tab选项
-		$(contents[curIndex]).fadeIn({
-			duration: '100', 
-			start: function() {
-				for (var k = 0; k<tabs.length; k++) {
-					tabs[k].className = '';
-				}
-				tabs[curIndex].className = 'selected';
-			}
-		});
-		index = curIndex;
+		tabs[curIndex].className = 'selected';
+		contents.stop(true);
+		$(contents[curIndex]).fadeIn().siblings().fadeOut();;
 	}
 });
 // function tab () {
 	
 // }		
+
+
+/**/
