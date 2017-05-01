@@ -204,7 +204,8 @@ $(document).ready(function() {
 		}
 		tabs[curIndex].className = 'selected';
 		contents.stop(true);
-		$(contents[curIndex]).fadeIn().siblings().fadeOut();;
+		$(contents[curIndex]).fadeIn().siblings().fadeOut();
+		index = curIndex; // 执行了切换要把index值也修改为切换后的值，否则如果继续执行自从切换就会从之前的index往下切换
 	}
 });
 // function tab () {
@@ -213,6 +214,33 @@ $(document).ready(function() {
 
 
 /*用面向对象的方式重写，然后封装成jquery插件*/
-function Tab (tabs, contents, opts) {
-	// body...
-}
+// function Tab (el, opts) {
+// 	// body...
+// 	this.opts = $.extend({}, BackTop.DEFAULTS, opts);
+//     this.$el = $(el);
+//     var tabs = this.$el.find(this.opts.tabClass);
+//     var contents = this.$el.find(this.opts.contentClass);
+// }
+// Tab.prototype = {
+// 	// body...
+// 	constructor: Tab,
+// 	_tabSwitch: function() {
+// 		if (this.opts.mode === 'click') {
+// 			$(this).addClass(this.opts.tabClassCur).siblings(this.opts.tabClass).removeClass(this.opts.tabClassCur);
+// 			var index = tabs.index($(this));
+// 			contents.eq(index).addClass(contentClassCur).siblings(this.opts.contentClass).removeClass(this.opts.contentClassCur);
+// 		}
+// 		if (this.opts.mode === 'fade') {
+
+// 		}
+// 	}
+// }
+// Tab.DEFAULTS = {
+// 	tabClass: '.tab', // tab标签类名，可自定义
+// 	tabClassCur: '.tab-selected' // 标签选定时添加的类名，在该类名下添加标签选定状态的样式
+// 	contentClass: '.content', // content标签类名，可自定义
+// 	contentClassCur: '.content-current' // 内容展示时添加的类名，在该类名下添加内容展示时的样式
+// 	trigger: 'mouseenter', // 切换触发方式，默认mouseenter，可选click
+// 	mode: 'none', // 切换时的动画效果，可选fade
+// 	autoPlay: true // 是否自动切换
+// }
