@@ -12,10 +12,10 @@
     background-color: #f7f7f7;
     ul {
         position: absolute;
-        width: 301px;
+        width: 302px;
         left: -1px;
     }
-    li {
+    li.tab {
         float: left;
         width: 58px;
         height: 26px;
@@ -32,7 +32,7 @@
         }
     }
     /* 选中后加左右边框，但是padding去掉 */
-    .selected {
+    .tab-selected {
         background-color: #fff;
         border-bottom-color: #fff;
         border-left: 1px solid #eee;

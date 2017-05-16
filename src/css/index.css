@@ -93,11 +93,11 @@ input {
 
 .notice-title ul {
   position: absolute;
-  width: 301px;
+  width: 302px;
   left: -1px;
 }
 
-.notice-title li {
+.notice-title li.tab {
   float: left;
   width: 58px;
   height: 26px;
@@ -109,11 +109,11 @@ input {
   padding: 0 1px;
 }
 
-.notice-title li a:hover {
+.notice-title li.tab a:hover {
   color: #f90;
 }
 
-.notice-title .selected {
+.notice-title .tab-selected {
   background-color: #fff;
   border-bottom-color: #fff;
   border-left: 1px solid #eee;
@@ -127,7 +127,7 @@ input {
   position: relative;
 }
 
-.notice-content .mod {
+.notice-content .content {
   position: absolute;
   top: 0;
   right: 0;
@@ -135,7 +135,7 @@ input {
   margin: 10px 10px 10px 19px;
 }
 
-.notice-content .mod-current {
+.notice-content .content-current {
   display: block;
 }
 

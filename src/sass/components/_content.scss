@@ -1,14 +1,14 @@
 /* 切换内容部分 */
 .notice-content {
     position: relative;
-	.mod {
+	.content {
         position: absolute;
         top: 0;
         right: 0;
 		display: none;
 		margin: 10px 10px 10px 19px;
 	}
-	.mod-current {
+	.content-current {
 		display: block;
 	}
 }
