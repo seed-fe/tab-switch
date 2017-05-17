@@ -11,16 +11,18 @@
 	    var contents = this.contents;
 	    var trigger = this.opts.trigger;
 	    var that = this;
+	    // 设定默认显示第几个tab
 	    if (this.opts.invoke > 1) {
 	    	this._tabSwitch(this.opts.invoke - 1);
 	    }
+	    // 控制自动切换
 	    if (this.opts.autoPlay === true) {
 	    	if (this.timerAuto) {
 				clearInterval(this.timerAuto);
 				this.timerAuto = null;
 			}
-			
 	    	this._autoPlay();
+	    	// 鼠标移入tab区域停止自动切换，移出恢复
 	    	this.$el.hover(function(event) {
 				event.preventDefault();
 				/* Act on the event */
@@ -33,6 +35,7 @@
 				}
 	    	);
 	    }
+	    // 切换触发方式
 	    if (trigger === 'click') {
 	    	tabs.on(trigger, function(e) {
 	    		/* Act on the event */
@@ -41,7 +44,6 @@
 	    		
 	    	});
 	    }
-	    // console.log(this.tabs);
 	    if (trigger === 'mouseenter') {
 	    	tabs.on(trigger, function(e) {
 	    		/* Act on the event */
