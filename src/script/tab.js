@@ -14,6 +14,9 @@
 	    var timerAuto = null;
 	    var timerDelay = null;
 	    var that = this;
+	    if (this.opts.invoke > 1) {
+	    	that._tabSwitch(this.opts.invoke - 1);
+	    }
 	    if (this.opts.autoPlay === true) {
 	    	if (timerAuto) {
 				clearInterval(timerAuto);
@@ -29,32 +32,35 @@
 				}
 	    		that._tabSwitch(index);
 	    	}, 2000);
-	    	this.$el.on('mouseover', function(event) {
+	    	this.$el.hover(function(event) {
 				event.preventDefault();
 				/* Act on the event */
 				clearInterval(timerAuto);
 				timerAuto = null;
-			});
-			this.$el.on('mouseout', function(event) {
-				event.preventDefault();
-				/* Act on the event */
-				timerAuto = setInterval(function() {
-					index++;
-					console.log(index);
-					// 索引达到最大时要重新归零
-					if (index >= that.tabs.length) {
-						// alert(1);
-						index = 0;
-					}
-	    			that._tabSwitch(index);
-				}, 2000);
-			});
+			}, function(event) {
+					event.preventDefault();
+					/* Act on the event */
+					timerAuto = setInterval(function() {
+						index++;
+						console.log(index);
+						// 索引达到最大时要重新归零
+						if (index >= that.tabs.length) {
+							// alert(1);
+							index = 0;
+						}
+	    				that._tabSwitch(index);
+					}, 2000);
+				}
+	    	);
 	    }
 	    if (this.opts.trigger === 'click') {
 	    	tabs.on('click', function(e) {
 	    		/* Act on the event */
 	    		that.curIndex = tabs.index($(this));
 	    		that._tabSwitch(that.curIndex);
+	    		if (that.opts.autoPlay === true) {
+	    			index = that.curIndex;
+	    		}
 	    	});
 	    }
 	    // console.log(this.tabs);
@@ -66,14 +72,13 @@
 					clearTimeout(timerDelay);
 					timerDelay = null;
 				}
-				// 判断当前tab对应的内容是否正在显示，如果正在显示就不执行切换函数，否则就执行切换函数
-				// if (contents[e].style.display === 'block') {
-				// 	return;
-				// } else {
-					timerDelay = setTimeout(function() {
-						that._tabSwitch(that.curIndex);
-					}, 500);
-				// }
+				timerDelay = setTimeout(function() {
+					that._tabSwitch(that.curIndex);
+					if (that.opts.autoPlay === true) {
+	    				index = that.curIndex;
+	    			} // 鼠标移入触发切换后要改变自动切换的index值，让下次自动切换的时候从当前tab开始切换
+					timerDelay = null; // debounce去抖，保证清除动画队列
+				}, 500);
 	    	});
 	    }
 	}
@@ -99,7 +104,7 @@
 		trigger: 'mouseenter', // 切换触发方式，默认mouseenter，可选click
 		mode: 'none', // 切换时的动画效果，可选fade，淡入淡出
 		autoPlay: true, // 是否自动切换，默认true
-		invoke: 1
+		invoke: 1 // 初始默认显示第几个tab
 	}
 	// 将一个对象添加到jquery的原型上从而提供新的jquery实例方法，这里就相当于给jquery实例对象提供了一个backtop方法，这也是实现jquery插件的常用方法，对象里定义的方法名就是插件方法名
 	$.fn.extend({
