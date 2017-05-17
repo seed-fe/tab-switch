@@ -9,75 +9,50 @@
 	    var tabs = this.tabs;
 	    this.contents = this.$el.find('.' + this.opts.contentClass);
 	    var contents = this.contents;
-	    var index;
-	    this.curIndex = 0;
-	    var timerAuto = null;
-	    var timerDelay = null;
+	    var trigger = this.opts.trigger;
 	    var that = this;
 	    if (this.opts.invoke > 1) {
-	    	that._tabSwitch(this.opts.invoke - 1);
+	    	this._tabSwitch(this.opts.invoke - 1);
 	    }
 	    if (this.opts.autoPlay === true) {
-	    	if (timerAuto) {
-				clearInterval(timerAuto);
-				timerAuto = null;
+	    	if (this.timerAuto) {
+				clearInterval(this.timerAuto);
+				this.timerAuto = null;
 			}
-			index = 0;
-	    	timerAuto = setInterval(function() {
-	    		index++;
-				// 索引达到最大时要重新归零
-				if (index >= that.tabs.length) {
-					// alert(1);
-					index = 0;
-				}
-	    		that._tabSwitch(index);
-	    	}, 2000);
+			
+	    	this._autoPlay();
 	    	this.$el.hover(function(event) {
 				event.preventDefault();
 				/* Act on the event */
-				clearInterval(timerAuto);
-				timerAuto = null;
+				clearInterval(that.timerAuto);
+				that.timerAuto = null;
 			}, function(event) {
 					event.preventDefault();
 					/* Act on the event */
-					timerAuto = setInterval(function() {
-						index++;
-						console.log(index);
-						// 索引达到最大时要重新归零
-						if (index >= that.tabs.length) {
-							// alert(1);
-							index = 0;
-						}
-	    				that._tabSwitch(index);
-					}, 2000);
+					that._autoPlay();
 				}
 	    	);
 	    }
-	    if (this.opts.trigger === 'click') {
-	    	tabs.on('click', function(e) {
+	    if (trigger === 'click') {
+	    	tabs.on(trigger, function(e) {
 	    		/* Act on the event */
 	    		that.curIndex = tabs.index($(this));
 	    		that._tabSwitch(that.curIndex);
-	    		if (that.opts.autoPlay === true) {
-	    			index = that.curIndex;
-	    		}
+	    		
 	    	});
 	    }
 	    // console.log(this.tabs);
-	    if (this.opts.trigger === 'mouseenter') {
-	    	tabs.on('mouseenter', function(e) {
+	    if (trigger === 'mouseenter') {
+	    	tabs.on(trigger, function(e) {
 	    		/* Act on the event */
 	    		that.curIndex = tabs.index($(this));
-	    		if (timerDelay) {
-					clearTimeout(timerDelay);
-					timerDelay = null;
+	    		if (that.timerDelay) {
+					clearTimeout(that.timerDelay);
+					that.timerDelay = null;
 				}
-				timerDelay = setTimeout(function() {
+				that.timerDelay = setTimeout(function() {
 					that._tabSwitch(that.curIndex);
-					if (that.opts.autoPlay === true) {
-	    				index = that.curIndex;
-	    			} // 鼠标移入触发切换后要改变自动切换的index值，让下次自动切换的时候从当前tab开始切换
-					timerDelay = null; // debounce去抖，保证清除动画队列
+					that.timerDelay = null; // debounce去抖，保证清除动画队列
 				}, 500);
 	    	});
 	    }
@@ -85,15 +60,37 @@
 	Tab.prototype = {
 		// body...
 		constructor: Tab,
+		autoIndex: 0, // 用来记录自动切换的索引
+		curIndex: 0, // 用来记录当前切换的tab的索引
+		timerAuto: null, // 自动切换定时器
+		timerDelay: null, // 延迟切换定时器
 		_tabSwitch: function(pIndex) {
+			// 硬切换
 			if (this.opts.mode === 'none') {
 				this.tabs.eq(pIndex).addClass(this.opts.tabClassCur).siblings().removeClass(this.opts.tabClassCur);
 				this.contents.eq(pIndex).addClass(this.opts.contentClassCur).siblings().removeClass(this.opts.contentClassCur);
 			}
+			// 淡入淡出切换
 			if (this.opts.mode === 'fade') {
 				this.tabs.eq(pIndex).addClass(this.opts.tabClassCur).siblings().removeClass(this.opts.tabClassCur);
 				this.contents.eq(pIndex).fadeIn().siblings().fadeOut();
 			}
+			// 鼠标移入触发切换后要改变自动切换的index值，让下次自动切换的时候从当前tab开始切换
+			if (this.opts.autoPlay === true) {
+	    		this.autoIndex = pIndex;
+	    	}
+		},
+		_autoPlay: function() {
+			var tabs = this.tabs;
+			var that = this; // 在原型方法内部把this负值给that，而不是在原型属性里，如果在原型属性里负值，在定时器内部还是
+			this.timerAuto = setInterval(function() {
+	    		that.autoIndex++;
+				// 索引达到最大时要重新归零
+				if (that.autoIndex >= tabs.length) {
+					that.autoIndex = 0;
+				}
+	    		that._tabSwitch(that.autoIndex);
+	    	}, 2000);
 		}
 	}
 	Tab.DEFAULTS = {
@@ -110,7 +107,6 @@
 	$.fn.extend({
 	    tab: function(opts) {
 	        // return 是为了实现连缀，这里的this指代调用插件时用jquery选择的元素，调用each方法是因为可能会选择多个元素
-	        // console.log(this); // 回到顶部按钮元素
 	        // .each()方法的回调函数的执行环境是当前dom元素，也就是说this始终指向当前dom元素，所以下面的回掉函数就是创建一个BackTop的实例，并把当前dom元素作为参数传入
 	        return this.each(function() {
 	            new Tab(this, opts);
