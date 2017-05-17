@@ -97,7 +97,7 @@ input {
   left: -1px;
 }
 
-.notice-title li.tab {
+.notice-title .tab {
   float: left;
   width: 58px;
   height: 26px;
@@ -109,7 +109,7 @@ input {
   padding: 0 1px;
 }
 
-.notice-title li.tab a:hover {
+.notice-title .tab a:hover {
   color: #f90;
 }
 
