@@ -84,7 +84,7 @@
 		},
 		_autoPlay: function() {
 			var tabs = this.tabs;
-			var that = this; // 在原型方法内部把this负值给that，而不是在原型属性里，如果在原型属性里负值，在定时器内部还是
+			var that = this; // 在原型方法内部把this负值给that，而不是在原型属性里，如果在原型属性里赋值而在外层函数里没有把this负值给that，在定时器内部还是访问不到的，因为闭包里的this还是指向全局作用域，而在外层函数里把this负值给that，闭包中的匿名函数就能访问到了；这里的this在调用时就是Tab的实例
 			this.timerAuto = setInterval(function() {
 	    		that.autoIndex++;
 				// 索引达到最大时要重新归零
@@ -111,7 +111,7 @@
 	        // return 是为了实现连缀，这里的this指代调用插件时用jquery选择的元素，调用each方法是因为可能会选择多个元素
 	        // .each()方法的回调函数的执行环境是当前dom元素，也就是说this始终指向当前dom元素，所以下面的回掉函数就是创建一个BackTop的实例，并把当前dom元素作为参数传入
 	        return this.each(function() {
-	            new Tab(this, opts);
+	            new Tab(this, opts); // 这里的this指向dom元素
 	        })
 	    }
 	})
