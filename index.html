@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-VN">
+<head>
+    <meta charset="UTF-8">
+    <title>tab-switch</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+    <div id="notice" class="notice">
+        <div id="notice-title" class="notice-title">
+            <ul>
+                <li class="tab tab-selected"><a href="#">公告</a></li>
+                <li class="tab"><a href="#">规则</a></li>
+                <li class="tab"><a href="#">论坛</a></li>
+                <li class="tab"><a href="#">安全</a></li>
+                <li class="tab"><a href="#">公益</a></li>
+            </ul>
+        </div>
+        <div id="notice-content" class="notice-content">
+            <div class="content content-current">
+                <p>内容1</p>
+            </div>
+            <div class="content">
+                <p>内容2</p>
+            </div>
+            <div class="content">
+                <p>内容3</p>
+            </div>
+            <div class="content">
+                <p>内容4</p>
+            </div>
+            <div class="content">
+                <p>内容5</p>
+            </div>
+        </div>
+    </div>
+    <script src="//apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="script/tab.js"></script>
+    <script>
+        $('#notice').tab({autoPlay: true, mode: 'fade', invoke: 2});
+    </script>
+</body>
+</html>
