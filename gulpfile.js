@@ -81,7 +81,7 @@ gulp.task('minifycss', function() {
       .pipe(plugins.sourcemaps.init())
       .pipe(plugins.autoprefixer({
         // 设置支持的浏览器，这里是主要浏览器的最新两个版本
-        browsers: 'last 2 versions'
+        browsers: ['last 2 Chrome versions', 'Firefox > 20', 'ie 6-8', 'last 2 Opera versions', 'last 2 Safari versions']
       }))
       .pipe(cleanCSS())
       .pipe(plugins.sourcemaps.write('./'))
