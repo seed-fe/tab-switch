@@ -1,0 +1,38 @@
+{
+    "name": "tab-switch",
+    "title": "tabSwitch",
+    "description": "Simple tab switch plugin",
+    "keywords": [
+        "tab-switch",
+        "animation",
+        "effect",
+        "hover"
+    ],
+    "version": "1.1.1",
+    "author": {
+        "name": "Bill",
+        "email": "zzlfullstack@gmail.com",
+        "url": "https://github.com/seed-fe"
+    },
+    "maintainers": [
+        {
+           "name": "Bill",
+            "email": "zzlfullstack@gmail.com",
+            "url": "https://github.com/seed-fe"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
+        }
+    ],
+    "bugs": "https://github.com/seed-fe/tab-switch/issues",
+    "homepage": "https://seed-fe.github.io/tab-switch/",
+    "docs": "https://github.com/seed-fe/tab-switch/blob/tab-plugin/README.md",
+    "demo":"https://seed-fe.github.io/tab-switch/",
+    "download": "https://github.com/seed-fe/tab-switch/archive/tab-plugin.zip",
+    "dependencies": {
+        "jquery": ">=1.5"
+    }
+}
