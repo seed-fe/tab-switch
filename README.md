@@ -36,7 +36,7 @@ tab切换插件
 2. 引入JQuery；
 3. 引入tab.js；
 4. 在tab选项卡容器上调用插件`$('#notice').tab()`
-## 插件配置项（options）
+## 插件配置项（Options）
 option|type|default|description
 ------|----|-------|-----------
 tabClass|string|'tab'|tab标签类名，在该类名下添加标签未选定状态的样式
@@ -47,9 +47,9 @@ trigger|string|'mouseenter'|切换触发方式，默认mouseenter，可选click�
 mode|string|'none'|切换时的动画效果，默认无动画效果，可选fade，淡入淡出
 autoPlay|boolean|true|是否自动切换，默认true
 invoke|number|1|初始化显示第几个tab的内容
-## 示例（demos）
+## 示例（Demos）
 https://seed-fe.github.io/tab-switch/ 目前只有一个演示，后续会添加不同配置项的效果
-## 兼容性（compatibility）
+## 兼容性（Compatibility）
 IE8+
 ## License
 
