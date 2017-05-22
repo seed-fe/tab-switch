@@ -24,7 +24,6 @@
 	    	this._autoPlay();
 	    	// 鼠标移入tab区域停止自动切换，移出恢复
 	    	this.$el.hover(function(event) {
-				event.preventDefault();
 				/* Act on the event */
 				clearInterval(that.timerAuto);
 				that.timerAuto = null;
@@ -39,6 +38,7 @@
 	    if (trigger === 'click') {
 	    	tabs.on(trigger, function(e) {
 	    		/* Act on the event */
+	    		e.preventDefault();
 	    		that.curIndex = tabs.index($(this));
 	    		that._tabSwitch(that.curIndex);
 	    		
@@ -86,7 +86,6 @@
 			var tabs = this.tabs;
 			var that = this; // 在原型方法内部把this负值给that，而不是在原型属性里，如果在原型属性里赋值而在外层函数里没有把this负值给that，在定时器内部还是访问不到的，因为闭包里的this还是指向全局作用域（这里用到了定时器，定时器内this指向window对象），而在外层函数里把this负值给that，闭包中的匿名函数就能访问到了；这里的this在调用时就是Tab的实例
 			this.timerAuto = setInterval(function() {
-				console.log(this);
 	    		that.autoIndex++;
 				// 索引达到最大时要重新归零
 				if (that.autoIndex >= tabs.length) {

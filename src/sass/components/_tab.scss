@@ -1,3 +1,14 @@
+.con {
+    margin: 0 auto;
+    width: 824px;
+}
+.sub-con {
+
+}
+.des {
+    margin: 10px;
+    font-size: 14px;
+}
 /* tab选项部分 */
 .notice {
     width: 298px;
@@ -10,11 +21,9 @@
     height: 27px;
     position: relative;
     background-color: #f7f7f7;
-    ul {
-        position: absolute;
-        width: 302px;
-        left: -1px;
-    }
+    // position: absolute;
+    width: 302px;
+    left: -1px;
     .tab {
         float: left;
         width: 58px;
