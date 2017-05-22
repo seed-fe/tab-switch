@@ -6,38 +6,137 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-    <div id="notice" class="notice">
-        <div id="notice-title" class="notice-title">
-            <ul>
+    <div class="con clearfix">
+        <div class="sub-con fl">
+        <p class="des">鼠标划过切换，无动画效果</p>
+        <div id="notice1" class="notice">
+            <ul id="notice-title" class="notice-title">
                 <li class="tab tab-selected"><a href="#">公告</a></li>
                 <li class="tab"><a href="#">规则</a></li>
                 <li class="tab"><a href="#">论坛</a></li>
                 <li class="tab"><a href="#">安全</a></li>
                 <li class="tab"><a href="#">公益</a></li>
             </ul>
+            <div id="notice-content" class="notice-content">
+                <div class="content content-current">
+                    <p>内容1</p>
+                </div>
+                <div class="content">
+                    <p>内容2</p>
+                </div>
+                <div class="content">
+                    <p>内容3</p>
+                </div>
+                <div class="content">
+                    <p>内容4</p>
+                </div>
+                <div class="content">
+                    <p>内容5</p>
+                </div>
+            </div>
         </div>
-        <div id="notice-content" class="notice-content">
-            <div class="content content-current">
-                <p>内容1</p>
+        <code class="code">$('#notice1').tab({autoPlay: false});</code>
+        </div>
+        <div class="sub-con fl">
+        <p class="des">鼠标点击切换，淡入淡出效果</p>
+        <div id="notice2" class="notice">
+            <ul id="notice-title" class="notice-title">
+                <li class="tab tab-selected"><a href="#">公告</a></li>
+                <li class="tab"><a href="#">规则</a></li>
+                <li class="tab"><a href="#">论坛</a></li>
+                <li class="tab"><a href="#">安全</a></li>
+                <li class="tab"><a href="#">公益</a></li>
+            </ul>
+            <div id="notice-content" class="notice-content">
+                <div class="content content-current">
+                    <p>内容1</p>
+                </div>
+                <div class="content">
+                    <p>内容2</p>
+                </div>
+                <div class="content">
+                    <p>内容3</p>
+                </div>
+                <div class="content">
+                    <p>内容4</p>
+                </div>
+                <div class="content">
+                    <p>内容5</p>
+                </div>
             </div>
-            <div class="content">
-                <p>内容2</p>
+        </div>
+        <code class="code">$('#notice2').tab({trigger: 'click', autoPlay: false,  mode: 'fade'});</code>
+        </div>
+        <div class="sub-con fl">
+        <p class="des">自动切换</p>
+        <div id="notice3" class="notice">
+            <ul id="notice-title" class="notice-title">
+                <li class="tab tab-selected"><a href="#">公告</a></li>
+                <li class="tab"><a href="#">规则</a></li>
+                <li class="tab"><a href="#">论坛</a></li>
+                <li class="tab"><a href="#">安全</a></li>
+                <li class="tab"><a href="#">公益</a></li>
+            </ul>
+            <div id="notice-content" class="notice-content">
+                <div class="content content-current">
+                    <p>内容1</p>
+                </div>
+                <div class="content">
+                    <p>内容2</p>
+                </div>
+                <div class="content">
+                    <p>内容3</p>
+                </div>
+                <div class="content">
+                    <p>内容4</p>
+                </div>
+                <div class="content">
+                    <p>内容5</p>
+                </div>
             </div>
-            <div class="content">
-                <p>内容3</p>
+        </div>
+        <code class="code">$('#notice3').tab();</code>
+        </div>
+        <div class="sub-con fl">
+            <p class="des">初始化时显示第二个tab的内容</p>
+            <div id="notice4" class="notice">
+                <ul id="notice-title" class="notice-title">
+                    <li class="tab tab-selected"><a href="#">公告</a></li>
+                    <li class="tab"><a href="#">规则</a></li>
+                    <li class="tab"><a href="#">论坛</a></li>
+                    <li class="tab"><a href="#">安全</a></li>
+                    <li class="tab"><a href="#">公益</a></li>
+                </ul>
+                <div id="notice-content" class="notice-content">
+                    <div class="content content-current">
+                        <p>内容1</p>
+                    </div>
+                    <div class="content">
+                        <p>内容2</p>
+                    </div>
+                    <div class="content">
+                        <p>内容3</p>
+                    </div>
+                    <div class="content">
+                        <p>内容4</p>
+                    </div>
+                    <div class="content">
+                        <p>内容5</p>
+                    </div>
+                </div>
             </div>
-            <div class="content">
-                <p>内容4</p>
-            </div>
-            <div class="content">
-                <p>内容5</p>
-            </div>
+            <code class="code">$('#notice4').tab({autoPlay: false, mode: 'fade', invoke: 2});</code>
         </div>
     </div>
     <script src="//apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="script/tab.js"></script>
     <script>
-        $('#notice').tab({autoPlay: true, mode: 'fade', invoke: 2});
+        $(document).ready(function() {
+            $('#notice1').tab({autoPlay: false});
+            $('#notice2').tab({trigger: 'click', autoPlay: false,  mode: 'fade'});
+            $('#notice3').tab();
+            $('#notice4').tab({autoPlay: false, mode: 'fade', invoke: 2});
+        });
     </script>
 </body>
 </html>
