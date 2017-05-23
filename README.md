@@ -48,7 +48,7 @@ mode|string|'none'|切换时的动画效果，默认无动画效果，可选fade
 autoPlay|boolean|true|是否自动切换，默认true
 invoke|number|1|初始化显示第几个tab的内容
 ## 示例（Demos）
-https://seed-fe.github.io/tab-switch/ 目前只有一个演示，后续会添加不同配置项的效果
+https://seed-fe.github.io/tab-switch/ 可以看到不同配置项的效果
 ## 兼容性（Compatibility）
 IE8+
 ## License
